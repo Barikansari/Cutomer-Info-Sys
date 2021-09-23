@@ -1,0 +1,186 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container" id="tabs" style="background-color: rgb(83, 207, 207); padding-top:5px">
+    <div style="float:right">
+        <button type="button" class="btn btn-success" style="color:black" data-bind="event: {click: $root.New}, enable:$root.btnsavenew" id="btnNew"> <i class="fas fa-plus"></i> New</button>
+        <button type="button" class="btn btn-success" style="color:black" data-bind="event: {click: $root.SaveInformation}, enable:$root.btnsavesubmit" id="btnAddInformation"> <i class="fas fa-plus"></i> Save</button>
+        <button type="button" class="btn btn-success" style="color:black" data-bind="event: {click: $root.ajaxUpdate}, enable:$root.btnajaxUpdate" id="btnajaxupdate"> <i class="fas fa-pen"></i> Update </button>
+        <button type="button" class="btn btn-primary" style="color:black" data-bind="event: {click: $root.Clear}, enable:$root.btnclearsubmit" id="btnClearInformation"><i class="fas fa-times"></i> Clear</button>
+    </div>
+    <ul>
+        <li><a href="#tabs-1">Personal Details</a></li>
+        <li><a href="#tabs-2">Address</a></li>
+        <li><a href="#tabs-3">AllInfo</a></li>
+
+    </ul>
+
+    <div id="tabs-1">
+        <h3 style="text-align:center"><b>Personal Detail Form</b></h3>
+
+        <div class="form-row" data-bind="with: MyModel">
+            <div class="col-md-4">
+                <label for="salutation">Salutation</label>
+                <select class="form-control" id="salutation" data-bind="
+                                value: SalutationId,
+                                options: $root.SalutationList,
+                                optionsValue: 'Value',
+                                event:{ change: $root.onChangeOfSalutation},
+                                optionsText: 'Text',
+                                optionsCaption: '---SELECT Salutaion---'">
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="fname">First Name</label>
+                <input type="text" data-bind="value: firstname, enable:$root.enabledisable" class="form-control" id="firstname" name="firstname" placeholder="Your name..">
+            </div>
+
+            <div class="col-md-4">
+                <label for="lname">Last Name</label>
+                <input type="text" data-bind="value: lastname, enable:$root.enabledisable" class="form-control" id="lname" name="lastname" placeholder="Your last name..">
+            </div>
+
+            <div class="col-md-4">
+                <label for="Contact">Phone Number:</label>
+                <input type="text" data-bind="value: phoneNumber, enable:$root.enabledisable" class="form-control" id="cont" placeholder="Enter Your Contact Number">
+            </div>
+
+            <div class="col-md-4">
+                <label style="padding-top:5px" for="email">Email:</label>
+                <input type="email" data-bind="value: email, enable:$root.enabledisable" class="form-control" id="email" placeholder="Enter Your Email">
+            </div>
+
+            <div class="col-md-4">
+                <label for="age">Age:</label>
+                <input type="text" data-bind="value: age, enable:$root.enabledisable" class="form-control" id="age" placeholder="Enter Your Age">
+            </div>
+
+            <div class="col-md-6">
+                <label for="Gender">Gender: </label>
+
+                <div class="form-check ">
+                    <input class="form-check-input" type="radio" data-bind="checked:SelectedGender, enable:$root.enabledisable" name="Gender" id="gender1" value="Male">
+                    <label for="Male">Male </label>
+
+                </div>
+
+                <div class=" form-check">
+                    <input class="form-check-input" type="radio" data-bind="checked:SelectedGender, enable:$root.enabledisable" name="Gender" id="gender2" value="Female">
+                    <label for="Female">Female </label>
+
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="Education">Education: </label>
+
+
+                <div class="form-check form-check-inline ">
+                    <input class="form-check-input" type="checkbox" data-bind="checked:SelectedEducation, enable:$root.enabledisable" name="slc" id="s1" value="SLC">
+                    <label for="SLC">SLC </label>
+                </div>
+
+                <div class="form-check form-check-inline ">
+                    <input class="form-check-input" type="checkbox" data-bind="checked:SelectedEducation, enable:$root.enabledisable" name="+2" id="s2" value="+2">
+                    <label for="SLC">+2 </label>
+                </div>
+
+                <div class="form-check form-check-inline ">
+                    <input class="form-check-input" type="checkbox" data-bind="checked:SelectedEducation, enable:$root.enabledisable" name="bachelor" id="s3" value="Bachelor">
+                    <label for="SLC">Bachelor </label>
+                </div>
+
+
+            </div>
+            <div class="col-md-12">
+                <label for="nation">Nationality</label>
+                <select class="form-control" id="Nationality" data-bind="
+                                   value: nationId,
+                                    enable:$root.enabledisable,
+                                   options: $root.NationList,
+                                   optionsValue: 'Value',
+                                   optionsText: 'Text',
+                                   optionsCaption: '---SELECT Nationality---'">
+                </select>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div id="tabs-2">
+        <div id="demoGrid"></div>
+        <h3 style="text-align:center"><b>Fill up Address</b></h3>
+
+        <div class="form-row" data-bind="with: MyAddress">
+            <div class="col-md-4">
+                <label for="address">Address Type</label>
+                <select class="form-control" id="addtype" data-bind="
+                                     value: addtypeId,
+                                     enable:$root.enabledisable,
+                                     options: $root.AddressTypeList,
+                                     optionsValue: 'Value',
+                                     optionsText: 'Text',
+                                     optionsCaption: '---SELECT Address Type---'">
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="address">Street Address</label>
+                <input type="text" class="form-control" data-bind="value: address, enable:$root.enabledisable" id="address" name="address" placeholder="Your Street address..">
+            </div>
+            <div class="col-md-4">
+                <label for="city">City</label>
+                <select class="form-control" id="city" data-bind="
+                                     value: cityId,
+                                    enable:$root.enabledisable,
+                                     options: $root.CityList,
+                                     optionsValue: 'Value',
+                                     optionsText: 'Text',
+                                     optionsCaption: '---SELECT City---'">
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label for="zip">ZIP</label>
+                <input type="text" class="form-control" data-bind="value: zip, enable:$root.enabledisable" id="zip" name="zip" placeholder=" Enter Your ZIP code..">
+            </div>
+
+            <div class="col-md-4">
+                <label for="country">Country</label>
+                <select class="form-control" id="country1" data-bind="
+                                     value: countryId,
+                                    enable:$root.enabledisable,
+                                     options: $root.CountryList,
+                                     optionsValue: 'Value',
+                                     optionsText: 'Text',
+                                     optionsCaption: '---SELECT Country---'">
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="contact">Phone Number</label>
+                <input type="text" class="form-control" data-bind="value: contact, enable:$root.enabledisable" id="contact1" name="contact" placeholder="Your phone number..">
+                `
+            </div>
+        </div>
+        <div style="padding-left: 42%">
+            <!-- <button  type="button" class="btn btn-success" id="btntab" value="validate"><i class="fas fa-plus"></i>Add</button> -->
+            <button type="button" class="btn btn-success" style="color:black" data-bind="event: {click: $root.SaveAddress}, enable:$root.btnaddresssubmit," id="btnAddAddress"> <i class="fas fa-plus"></i> Add</button>
+            <button type="button" class="btn btn-warning" style="color:black" data-bind="event: {click: $root.Update}, enable: $root.btnupdatesubmit" id="btnupdateInformation"><i class="fas fa-pen"></i> Update</button>
+        </div>
+    </div>
+
+    <div id="tabs-3">
+
+        <div id="InfoGrid"></div>
+
+        @*<button type="button" class="btn btn-success" style="color:black" data-bind="event: {click: $root.Show}, enable:$root.btnshow," id="btnShow">Show</button>*@
+
+    </div>
+
+</div>
+    <script src="~/Scripts/KnockOutjs/index.js"></script>
+
+
+
+

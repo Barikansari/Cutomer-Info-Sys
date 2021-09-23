@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "InfoDashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+    <div class="wrapp" id="tabs" style="width: 100%; background-color: rgb(83, 207, 207);">
+
+
+
+        <ul>
+            @*<li><a href="#tabs-1">Dashboard</a></li>*@
+            <li><a href="#tabs-1">InfoDashboard</a></li>
+
+        </ul>
+        <h1 style="text-align: center; color: rgb(12, 68, 17);"><b>Personal Information Dashboard</b></h1>
+
+        <div id="tabs-1">
+
+            <div class="wrapgrid" id="InfoGrid"></div>
+
+            @*<button type="button" class="btn btn-success" style="color:black" data-bind="event: {click: $root.Show}, enable:$root.btnshow," id="btnShow">Show</button>*@
+
+        </div>
+    </div>
+
+
+    <script src="~/Scripts/KnockOutjs/indexVM.js"></script>
+
